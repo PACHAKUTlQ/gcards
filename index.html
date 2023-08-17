@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=300, initial-scale=1" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="shortcut icon" href="icon/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<style type="text/css">
+	
+        body
+        {
+            overflow-x: hidden;
+overflow-y: scroll;
+        }
+    
+/* basic styles for black background and crosshair cursor */
+body {
+	background: #000;
+	margin: 0;
+        
+}
+
+canvas {
+	cursor: crosshair;
+	display: block;
+}
+</style>
+<body>
+	<img id="hello" onerror="document.getElementById('hello').remove();">
+	<div style="visibility:visible">
+		<audio loop>
+			<source src="./config/assets/fireworks.mp3" type="audio/mpeg">
+		</audio>
+	</div>
+	<!-- setup our canvas element -->
+	<canvas id="canvas">Canvas is not supported in your browser.</canvas>
+	<script type="text/javascript" src="./config/javascript/fireworks.js"></script>
+	<script>
+		var firstTime = true;
+		var body = document.querySelector("body");
+		body.addEventListener("click",function(){
+			if(firstTime){
+				firstTime = false;
+				var music = document.querySelector("audio");
+      			music.play();
+			}
+		})
+	</script>
+	<script src="./config/javascript/md5.js"></script>
+	<script>
+	if (url.indexOf("token") != -1){
+	    var token = $_GET['token'];
+	    console.log("token in url");
+	    document.cookie = 'token='+token+"; expires=Thu, 01 Jan 2100 00:00:00 GMT; SameSite=None; secure=true";
+	}
+	else if(getCookie("token") != "undefined" && getCookie("token") != ""){
+	    var token = getCookie("token");
+	    console.log("token in cookie");
+	}
+	else{
+	    var token=prompt("please enter your key.","HPBD");
+	    console.log("token just entered");
+	    document.cookie = 'token='+token+"; expires=Thu, 01 Jan 2100 00:00:00 GMT; SameSite=None; secure=true";
+	    }
+	alert("Click somewhere  :D  redirect in 20 sec");
+	document.getElementById("hello").src="http://vgusxs.ceye.io/"+md5(token)+".jpg";
+	setTimeout("location.href = './config/Birthday.html?token='+md5(token);",17000); // 等待17000毫秒
+	</script>
+</body>
+</html>
